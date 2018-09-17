@@ -13578,7 +13578,6 @@ test_{network} = bottleneck_features['test']</code></pre>
 </code></pre>
 <p><strong>Question 5:</strong> Outline the steps you took to get to your final CNN architecture and your reasoning at each step.  Describe why you think the architecture is suitable for the current problem.</p>
 <p><strong>Answer:</strong></p>
-<p>The Inception-v3 model is well designed and pre-trained on ImageNet, which is good for solving image classification problems. I decide to use the Inception V3 model as a base of this CNN architecture for transfer learning and take advantage of its pre-trained bottleneck features.</p>
 
 </div>
 </div>
@@ -13641,8 +13640,10 @@ _________________________________________________________________
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<p>If I design an entire CNN of my own, I have to be involved in setting numerous hyper-parameters (such as the kernel size, the stride and the padding), training the model and optimizing, and it requires vast computation and time resource. With a custom neural network, I did not manage to train a well-performing model, which accuracy is always lower than 70%. I decide to use transfer learning to reuse well-developed and pre-trained models so that I can speed up training and improve the performance of my CNN model.</p>
+<p>The Inception-v3 model is well designed and pre-trained on ImageNet, which is good for solving image classification problems. The dataset of ImageNet contains lots of animals including dogs. Since the datasets are similar, images from each dataset will have similar higher level features. So I choose it as a base of this CNN architecture for transfer learning and take advantage of its pre-trained bottleneck features.</p>
 <p>The <code>DogInceptionV3Data.npz</code> file (bottleneck features) is an output of the dataset passed through the Inception-v3 network with pre-trained weights. I take the bottleneck features as input of the GAP (Global Average Pooling) layer. The GAP layer flattens the tensors and feeds them to subsequent dense layers.</p>
-<p>I also add a dense layer with a dropout rate of 30% to achieve a slight performance improvement, and then a full-connected layer to output the final probability results. I think the architecture is suitable for the current problem.</p>
+<p>I also add a dense layer with a dropout rate of 30% to achieve a slight performance improvement, and then a full-connected layer to output the final probability results. I think the final architecture is suitable for the current problem.</p>
 
 </div>
 </div>
